@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import './App.scss'
 
 class App extends React.Component {
   constructor(props) {
@@ -49,7 +50,7 @@ class App extends React.Component {
             pointerToThis.state.wikiSearchReturnValues.push({
               queryResultPageFullURL: 'no link',
               queryResultPageID: response.query.search[key].pageid,
-              queryResultPage: response.query.search[key].title,
+              queryResultPageTitle: response.query.search[key].title,
               queryResultSnippet: response.query.search[key].snippet
             });
           }
@@ -92,12 +93,12 @@ class App extends React.Component {
                 {this.state.wikiSearchReturnValues[key3].queryResultPageTitle}
               </a>
             </h3>
-            <span className="link">
+            <span className="search-result__link">
               <a href={this.state.wikiSearchReturnValues[key3].queryResultPageFullURL}>
                   {this.state.wikiSearchReturnValues[key3].queryResultPageFullURL}
                 </a>
             </span>
-            <p className="description" dangerouslySetInnerHTML={{__html: this.state.wikiSearchReturnValues[key3].queryResultSnippet}}>
+            <p className="search-result__description" dangerouslySetInnerHTML={{__html: this.state.wikiSearchReturnValues[key3].queryResultSnippet}}>
             </p>
           </div>
       );

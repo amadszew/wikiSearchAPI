@@ -85,9 +85,20 @@ class App extends React.Component {
     e.preventDefault();
     
     const replaceTerm = document.getElementById('replaceInput')
-    const snippet = document.querySelector(".searchmatch");
+    const snippets = document.querySelector(".searchmatch");
     
-    snippet.innerHTML = replaceTerm.value;  
+    snippets.innerHTML = replaceTerm.value;  
+  }
+  
+  wikiReplaceAllEngine = (e) => {
+    e.preventDefault();
+    
+    const replaceTerm = document.getElementById('replaceInput')
+    const snippets = document.querySelectorAll(".searchmatch");
+
+    [].forEach.call(snippets, function(snippet) {
+      snippet.innerHTML = replaceTerm.value; 
+    }); 
   }
 
   changeWikiReplaceTerms = (e) => {
@@ -120,14 +131,15 @@ class App extends React.Component {
     }
 
     return (
-      <div className="App">
+      <div className='App'>
         <h1>Wikipedia Search</h1>
         <form>
-          <input type="text" defaultValue={this.state.wikiSearchTerms} onChange={this.changeWikiSearchTerms} placeholder='Search in Wikipedia' />
+          <input type='text' defaultValue={this.state.wikiSearchTerms} onChange={this.changeWikiSearchTerms} placeholder='Search in Wikipedia' id='searchInput' />
           <button type="submit" onClick={this.wikiSearchEngine}>Search</button>
 
-          <input type='text' defaultValue={this.state.wikiReplaceTerms} onChange={this.changeWikiReplaceTerms} placeholder="Replace" id='replaceInput' />
+          <input type='text' defaultValue={this.state.wikiReplaceTerms} onChange={this.changeWikiReplaceTerms} placeholder='Replace' id='replaceInput' />
           <button type='submit' onClick={this.wikiReplaceEngine}>Replace</button>
+          <button type='submit' onClick={this.wikiReplaceAllEngine}>ReplaceALL</button>
         </form>
         {wikiSearchResults}
       </div>

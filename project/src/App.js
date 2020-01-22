@@ -114,13 +114,13 @@ class App extends React.Component {
     for (const key3 in this.state.wikiSearchReturnValues) {
       wikiSearchResults.push(
           <div className="search-result" key={key3}>
-            <h3>
-              <a href={this.state.wikiSearchReturnValues[key3].queryResultPageFullURL}>
+            <h3 className="search-result__title">
+              <a href={this.state.wikiSearchReturnValues[key3].queryResultPageFullURL} target='_blank'>
                 {this.state.wikiSearchReturnValues[key3].queryResultPageTitle}
               </a>
             </h3>
             <span className="search-result__link">
-              <a href={this.state.wikiSearchReturnValues[key3].queryResultPageFullURL}>
+              <a href={this.state.wikiSearchReturnValues[key3].queryResultPageFullURL} target='_blank'>
                   {this.state.wikiSearchReturnValues[key3].queryResultPageFullURL}
                 </a>
             </span>
@@ -132,14 +132,19 @@ class App extends React.Component {
 
     return (
       <div className='App'>
-        <h1>Wikipedia Search</h1>
+        <h1>Wikipedia Search API</h1>
         <form>
-          <input type='text' defaultValue={this.state.wikiSearchTerms} onChange={this.changeWikiSearchTerms} placeholder='Search in Wikipedia' id='searchInput' />
-          <button type="submit" onClick={this.wikiSearchEngine}>Search</button>
-
-          <input type='text' defaultValue={this.state.wikiReplaceTerms} onChange={this.changeWikiReplaceTerms} placeholder='Replace' id='replaceInput' />
-          <button type='submit' onClick={this.wikiReplaceEngine}>Replace</button>
-          <button type='submit' onClick={this.wikiReplaceAllEngine}>ReplaceALL</button>
+          <div className="input-field">
+            <input type='text' defaultValue={this.state.wikiSearchTerms} onChange={this.changeWikiSearchTerms} placeholder='Search in Wikipedia' id='searchInput' />
+            <button type="button" onClick={this.wikiSearchEngine}>Search</button>
+          </div>
+          <div className="input-field">
+            <input type='text' defaultValue={this.state.wikiReplaceTerms} onChange={this.changeWikiReplaceTerms} placeholder='Replace' id='replaceInput' />
+            <div className="button-field">
+              <button type='button' onClick={this.wikiReplaceEngine}>Replace</button>
+              <button type='button' onClick={this.wikiReplaceAllEngine}>Replace All</button>
+            </div>
+          </div>
         </form>
         {wikiSearchResults}
       </div>

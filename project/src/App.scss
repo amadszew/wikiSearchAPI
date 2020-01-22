@@ -1,7 +1,97 @@
-
+body {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    background: #f9f9f9;
+}
+.App {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    > h1 {
+        font-size: 34px;
+        letter-spacing: 1.4px;
+    }
+    form {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 600px;
+        margin-bottom: 30px;
+        padding: 10px 0 50px;
+        border-bottom: 2px dashed #ccc;
+        .input-field {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100px;
+            &:first-of-type {
+                margin-right: 20px;
+            }
+        }
+        input[type=text] {
+            border-radius: 25px;
+            border: none;
+            line-height: 40px;
+            box-shadow: 0 0 10px 1px rgba(0, 0, 0, .6);
+            padding: 0 20px;
+            width: 230px;
+            margin-top: 20px;
+            transition: all .2s ease-in-out;
+            &:hover, &:focus {
+                box-shadow: 0 0 10px 1px rgba(0, 87, 128, .6);
+            }
+        }
+        button[type=button] {
+            background: #00adfd;
+            color: #fff;
+            width: 110px;
+            line-height: 20px;
+            padding: 5px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all .2s ease-in-out;
+            &:hover, &:focus {
+                background: #008bcc;
+            }
+            &:nth-of-type(2) {
+                margin-left: 5px;
+            }
+        }
+    }
+}
 .search-result {
+    width: 600px;
+    margin: 0 auto;
+    text-align: left;
+    margin-bottom: 20px;
     .searchmatch {
         font-weight: bold;
+    }
+    &__title {
+        margin-bottom: 5px;
+        a {
+            color: #1a0dab;
+            line-height: 16px;
+            text-decoration: none;
+            transition: all .2s ease-in-out;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+    &__link {
+        a {
+            text-decoration: none;
+            color: #287e44;
+            transition: all .2s ease-in-out;
+            &:hover {
+                text-decoration: underline;
+            }
+            &:visited {
+                color: #1a0dab;
+            }
+        }
     }
     &__description {
         color: #333

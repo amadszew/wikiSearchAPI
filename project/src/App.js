@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import './App.scss'
 
 class App extends React.Component {
@@ -8,6 +7,7 @@ class App extends React.Component {
     this.state ={
       wikiSearchTerms: '',
       wikiSearchReturnValues: [],
+      wikiReplaceTerms: ''
     }
   }
 
@@ -81,6 +81,21 @@ class App extends React.Component {
       )
   }
 
+  wikiReplaceEngine = (e) => {
+    e.preventDefault();
+    
+    const replaceTerm = document.getElementById('replaceInput')
+    const snippet = document.querySelector(".searchmatch");
+    
+    snippet.innerHTML = replaceTerm.value;  
+  }
+
+  changeWikiReplaceTerms = (e) => {
+    this.setState({
+      wikiReplaceTerms: e.target.value
+    })
+  }
+
 
   render() {
     let wikiSearchResults = [];
@@ -110,6 +125,9 @@ class App extends React.Component {
         <form>
           <input type="text" defaultValue={this.state.wikiSearchTerms} onChange={this.changeWikiSearchTerms} placeholder='Search in Wikipedia' />
           <button type="submit" onClick={this.wikiSearchEngine}>Search</button>
+
+          <input type='text' defaultValue={this.state.wikiReplaceTerms} onChange={this.changeWikiReplaceTerms} placeholder="Replace" id='replaceInput' />
+          <button type='submit' onClick={this.wikiReplaceEngine}>Replace</button>
         </form>
         {wikiSearchResults}
       </div>

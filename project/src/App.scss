@@ -57,6 +57,12 @@ body {
             &:nth-of-type(2) {
                 margin-left: 5px;
             }
+            &:disabled {
+                background: #ccc;
+                &:hover {
+                    background: #ccc;
+                }
+            }
         }
     }
 }

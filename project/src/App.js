@@ -7,7 +7,8 @@ class App extends React.Component {
     this.state ={
       wikiSearchTerms: '',
       wikiSearchReturnValues: [],
-      wikiReplaceTerms: ''
+      wikiReplaceTerms: '',
+      showResults: false
     }
   }
 
@@ -20,7 +21,8 @@ class App extends React.Component {
   wikiSearchEngine = (e) => {
     e.preventDefault();
     this.setState({
-      wikiSearchReturnValues: []
+      wikiSearchReturnValues: [],
+      showResults: true
     })
 
     const pointerToThis = this;
@@ -109,6 +111,9 @@ class App extends React.Component {
 
 
   render() {
+    const searchDisabled = this.state.wikiSearchTerms === '';
+    const replaceDisabled = this.state.showResults === false || this.state.wikiReplaceTerms === '';
+
     let wikiSearchResults = [];
 
     for (const key3 in this.state.wikiSearchReturnValues) {
@@ -136,13 +141,13 @@ class App extends React.Component {
         <form>
           <div className="input-field">
             <input type='text' defaultValue={this.state.wikiSearchTerms} onChange={this.changeWikiSearchTerms} placeholder='Search in Wikipedia' id='searchInput' />
-            <button type="button" onClick={this.wikiSearchEngine}>Search</button>
+            <button type="button" onClick={this.wikiSearchEngine} disabled={searchDisabled}>Search</button>
           </div>
           <div className="input-field">
             <input type='text' defaultValue={this.state.wikiReplaceTerms} onChange={this.changeWikiReplaceTerms} placeholder='Replace' id='replaceInput' />
             <div className="button-field">
-              <button type='button' onClick={this.wikiReplaceEngine}>Replace</button>
-              <button type='button' onClick={this.wikiReplaceAllEngine}>Replace All</button>
+              <button type='button' onClick={this.wikiReplaceEngine} disabled={replaceDisabled}>Replace</button>
+              <button type='button' onClick={this.wikiReplaceAllEngine} disabled={replaceDisabled}>Replace All</button>
             </div>
           </div>
         </form>
